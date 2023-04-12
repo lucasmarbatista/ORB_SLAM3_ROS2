@@ -14,7 +14,7 @@ class ImagePublisher(Node):
         self.bridge = CvBridge()
         # Fill it with the video complete path, without ~ (tilde sign)
         # Example: self.cap = cv2.VideoCapture("/home/lucasmarins/test_slam_ws/src/ORB_SLAM3_ROS2/videos/example_video.avi")
-        self.cap = cv2.VideoCapture("/home/user/slam_ws/src/ORB_SLAM3_ROS2/videos/example_video.avi")
+        self.cap = cv2.VideoCapture("/home/user/slam_ws/src/ORB_SLAM3_ROS2/videos/webcam_video.avi")
         self.pub = self.create_publisher(Image, "/camera", 10)
 
     def run(self):

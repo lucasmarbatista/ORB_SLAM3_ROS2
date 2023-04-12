@@ -75,6 +75,35 @@ $ ros2 run orbslam3 rgbd PATH_TO_VOCABULARY PATH_TO_YAML_CONFIG_FILE
 $ ros2 run orbslam3 stereo-inertial PATH_TO_VOCABULARY PATH_TO_YAML_CONFIG_FILE BOOL_RECTIFY [BOOL_EQUALIZE]
 ```
 
+## Run from a video or webcam
+
+1. Run the video or webcam node.
+
+  - Video node publisher.
+
+Change the path file on `ros2_video_pub.py`.
+```
+self.cap = cv2.VideoCapture("/home/user/slam_ws/src/ORB_SLAM3_ROS2/videos/webcam_video.avi")
+```
+  - Then, run:
+```
+$ ros2 run orbslam3 ros2_video_pub.py 
+```
+
+or
+
+  - Webcam node publisher.
+```
+$ ros2 run orbslam3 ros2_webcam_pub.py 
+```
+
+1. Run orbslam mono mode.
+Example:
+
+```
+$ ros2 run orbslam3 mono src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt src/ORB_SLAM3_ROS2/config/monocular/RealSense_D435i.yaml
+```
+
 ## Run with rosbag
 To play ros1 bag file, you should install `ros1 noetic` & `ros1 bridge`.  
 Here is a [link](https://www.theconstructsim.com/ros2-qa-217-how-to-mix-ros1-and-ros2-packages/) to demonstrate example of `ros1-ros2 bridge` procedure.  
