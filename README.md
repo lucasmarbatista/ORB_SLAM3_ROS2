@@ -8,9 +8,9 @@ This repository is ROS2 wrapping to use ORB_SLAM3
 
 ## Prerequisites
 - I have tested on below version.
-  - Ubuntu 20.04
-  - ROS2 foxy
-  - OpenCV 4.2.0
+  - Ubuntu 22.04
+  - ROS2 humble
+  - OpenCV 4.7.0
 
 - Build ORB_SLAM3
   - Go to this [repo](https://github.com/zang09/ORB-SLAM3-STEREO-FIXED) and follow build instruction.
@@ -75,6 +75,35 @@ $ ros2 run orbslam3 rgbd PATH_TO_VOCABULARY PATH_TO_YAML_CONFIG_FILE
 $ ros2 run orbslam3 stereo-inertial PATH_TO_VOCABULARY PATH_TO_YAML_CONFIG_FILE BOOL_RECTIFY [BOOL_EQUALIZE]
 ```
 
+## Run from a video or webcam
+
+1. Run the video or webcam node.
+
+  - Video node publisher.
+
+Change the path file on `ros2_video_pub.py`.
+```
+self.cap = cv2.VideoCapture("/home/user/slam_ws/src/ORB_SLAM3_ROS2/videos/webcam_video.avi")
+```
+  - Then, run:
+```
+$ ros2 run orbslam3 ros2_video_pub.py 
+```
+
+or
+
+  - Webcam node publisher.
+```
+$ ros2 run orbslam3 ros2_webcam_pub.py 
+```
+
+1. Run orbslam mono mode.
+Example:
+
+```
+$ ros2 run orbslam3 mono src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt src/ORB_SLAM3_ROS2/config/monocular/RealSense_D435i.yaml
+```
+
 ## Run with rosbag
 To play ros1 bag file, you should install `ros1 noetic` & `ros1 bridge`.  
 Here is a [link](https://www.theconstructsim.com/ros2-qa-217-how-to-mix-ros1-and-ros2-packages/) to demonstrate example of `ros1-ros2 bridge` procedure.  
@@ -110,5 +139,9 @@ ros2 run orbslam3 stereo-inertial PATH_TO_VOCABULARY PATH_TO_YAML_CONFIG_FILE BO
 3. Press `spacebar` in `Shell C` to resume bag file.  
 
 ## Acknowledgments
-This repository is modified from [this](https://github.com/curryc/ros2_orbslam3) repository.  
-To add `stereo-inertial` mode and improve build difficulites.
+
+This repository updates [this](https://github.com/zang09/ORB_SLAM3_ROS2) repository.  
+To add two python nodes that publish a video or webcam streaming on a camera ROS2 (humble) topic and updates to publish pose on ROS2 (not finished yet).
+
+Notes:
+This update was tested on [opencv 4.7](https://github.com/opencv/opencv) (branch: 4.x), ROS2 Humble and Ubuntu 22.04.2 LTS.

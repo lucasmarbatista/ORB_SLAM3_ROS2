@@ -9,12 +9,17 @@
   <author>Haebeom Jung</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
 
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
   <depend>cv_bridge</depend>
   <depend>message_filters</depend>
   <depend>Pangolin</depend>
+
+  <depend>rclpy</depend>
+  <depend>cv2</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 project(orbslam3)
 
 # You should set the PYTHONPATH to your own python site-packages path
-set(ENV{PYTHONPATH} "/opt/ros/foxy/lib/python3.8/site-packages/")
+set(ENV{PYTHONPATH} "/opt/ros/humble/lib/python3.10/site-packages/")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 
@@ -18,11 +18,16 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(ORB_SLAM3 REQUIRED)
+
+find_package(ament_cmake_python REQUIRED)
+find_package(rclpy REQUIRED)
+
 
 include_directories(
   include
@@ -38,7 +43,7 @@ add_executable(mono
   src/monocular/mono.cpp
   src/monocular/monocular-slam-node.cpp
 )
-ament_target_dependencies(mono rclcpp sensor_msgs cv_bridge ORB_SLAM3 Pangolin)
+ament_target_dependencies(mono rclcpp sensor_msgs geometry_msgs cv_bridge ORB_SLAM3 Pangolin)
 
 add_executable(rgbd
   src/rgbd/rgbd.cpp
@@ -65,6 +70,22 @@ install(TARGETS mono rgbd stereo stereo-inertial
 # Install launch files.
 #install(DIRECTORY launch config vocabulary
 #  DESTINATION share/${PROJECT_NAME}/)
+
+# Install Python Modules
+ament_python_install_package(${PROJECT_NAME})
+
+# Install Python executables
+install(PROGRAMS
+  scripts/ros2_video_pub.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install Python executables
+install(PROGRAMS
+  scripts/ros2_webcam_pub.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 
 ament_package()
 
