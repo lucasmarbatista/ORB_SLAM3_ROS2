@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ORB_SLAM3_ROS2)
+project(orbslam3)
 
 # You should set the PYTHONPATH to your own python site-packages path
 set(ENV{PYTHONPATH} "/opt/ros/humble/lib/python3.10/site-packages/")
@@ -79,6 +79,13 @@ install(PROGRAMS
   scripts/ros2_video_pub.py
   DESTINATION lib/${PROJECT_NAME}
 )
+
+# Install Python executables
+install(PROGRAMS
+  scripts/ros2_webcam_pub.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 
 ament_package()
 
