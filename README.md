@@ -8,9 +8,9 @@ This repository is ROS2 wrapping to use ORB_SLAM3
 
 ## Prerequisites
 - I have tested on below version.
-  - Ubuntu 20.04
-  - ROS2 foxy
-  - OpenCV 4.2.0
+  - Ubuntu 22.04
+  - ROS2 humble
+  - OpenCV 4.7.0
 
 - Build ORB_SLAM3
   - Go to this [repo](https://github.com/zang09/ORB-SLAM3-STEREO-FIXED) and follow build instruction.
