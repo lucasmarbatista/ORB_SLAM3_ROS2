@@ -139,5 +139,9 @@ ros2 run orbslam3 stereo-inertial PATH_TO_VOCABULARY PATH_TO_YAML_CONFIG_FILE BO
 3. Press `spacebar` in `Shell C` to resume bag file.  
 
 ## Acknowledgments
-This repository is modified from [this](https://github.com/curryc/ros2_orbslam3) repository.  
-To add `stereo-inertial` mode and improve build difficulites.
+
+This repository updates [this](https://github.com/zang09/ORB_SLAM3_ROS2) repository.  
+To add two python nodes that publish a video or webcam streaming on a camera ROS2 (humble) topic and updates to publish pose on ROS2 (not finished yed).
+
+Notes:
+This updated was tested on [opencv 4.7](https://github.com/opencv/opencv) (branch: 4.x), ROS2 Humble and Ubuntu 22.04.2 LTS.
